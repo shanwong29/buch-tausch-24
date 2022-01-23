@@ -1,0 +1,56 @@
+Table Users{
+  email string [pk, unique] 
+  user_name string
+  profile_pic_url string
+  created_at timestamp
+}
+
+Table Books{
+  ISBN10 string [pk, unique]
+  title string
+  author string
+  cover_pic_url string
+  description string
+  language string
+  page_count number
+  published_year number
+}
+
+Ref: Owned_Books.owner_id > Users.email
+Ref: Owned_Books.borrower_id > Users.email
+Ref: Owned_Books.ISBN10 > Books.ISBN10
+
+
+Enum status {
+  borrowed
+  available
+}
+
+Table Owned_Books {
+  book_id string  [pk, unique]
+  owner_id string
+  borrower_id string
+  ISBN10 string
+  status status
+}
+
+Ref: Pending_Friend_Requests.sender_id > Users.email
+Ref: Pending_Friend_Requests.reciever_id > Users.email
+
+Table Pending_Friend_Requests{
+  record_id string [pk, unique]
+  sender_id  string
+  reciever_id string
+  timestamp timestamp
+}
+
+Ref: Friendship.user_1 > Users.email
+Ref: Friendship.user_2 > Users.email
+
+Table Friendship{
+  record_id string [pk, unique]
+  user_1  string
+  user_2 string
+  timestamp timestamp
+}
+
