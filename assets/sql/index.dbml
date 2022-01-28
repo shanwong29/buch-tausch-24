@@ -22,8 +22,8 @@ Ref: Owned_Books.ISBN10 > Books.ISBN10
 
 
 Enum status {
-  borrowed
-  available
+  BORROWED
+  CONFIRMED
 }
 
 Table Owned_Books {
@@ -32,6 +32,15 @@ Table Owned_Books {
   borrower_id string
   ISBN10 string
   status status
+}
+
+Ref: Book_Requests.sender_id > Users.email
+Ref: Book_Requests.book_id > Owned_Books.book_id
+
+Table Book_Requests{
+  request_id string [pk, unique]
+  sender_id string 
+  book_id string
 }
 
 Ref: Pending_Friend_Requests.sender_id > Users.email

@@ -15,7 +15,7 @@ As a registered user, I can...
 8. `U` mark book as borrowed / returned
 9. `R` list all books of a user and the status of the books
 10. `R` list all books that a user has borrowed
-11. `R` view details of a book and owners
+11. `R` view details of a book and list of owners
 12. `R` lists all pending friend requests
 13. `R` list all confirmed friends
 
@@ -24,3 +24,23 @@ As a registered user, I can...
 ### SQL
 
 ![sql-diagram](./assets/sql/sql.png)
+
+### DynamoDB
+
+### Main Table
+
+![Main-Table](./assets/dynamoDB/buch-tausch-24.png)
+
+### Secondary Index
+
+1. InvertedIndex - For querying the book request senders of a specific book:
+
+![InvertedIndex](./assets/dynamoDB/GSI_buch-tausch-24_InvertedIndex.png)
+
+2. GSI-1 - For querying all books that a user has borrowed:
+
+![GSI-BorrowedBooks](./assets/dynamoDB/GSI_buch-tausch-24_BorrowedBooks.png)
+
+3. GSI-2 - For querying all owners of a specific book:
+
+![GSI-AllOwnersOfABook](./assets/dynamoDB/GSI_buch-tausch-24_AllOwnersOfABook.png)
