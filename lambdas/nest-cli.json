@@ -1,0 +1,31 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/books/src",
+  "monorepo": true,
+  "root": "apps/books",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/books/tsconfig.app.json"
+  },
+  "projects": {
+    "books": {
+      "type": "application",
+      "root": "apps/books",
+      "entryFile": "main",
+      "sourceRoot": "apps/books/src",
+      "compilerOptions": {
+        "webpack": true,
+        "tsConfigPath": "apps/books/tsconfig.app.json"
+      }
+    },
+    "dynamo-db": {
+      "type": "library",
+      "root": "libs/dynamo-db",
+      "entryFile": "index",
+      "sourceRoot": "libs/dynamo-db/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/dynamo-db/tsconfig.lib.json"
+      }
+    }
+  }
+}
