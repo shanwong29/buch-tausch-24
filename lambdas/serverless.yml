@@ -1,0 +1,22 @@
+service: buch-tausch-24-lambdas
+
+plugins:
+  - serverless-offline
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  books:
+    handler: dist/apps/books/main.handler
+    events:
+      - http:
+          method: POST
+          path: /books
+    package:
+      patterns:
+        - dist/apps/books/**
